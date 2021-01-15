@@ -6,9 +6,9 @@ const ForecastDaily = () => {
     <div className={styles.wrapper}>
       <div className={styles.conditionStatus}>
         <span>Mon</span>
-        <span>Icon</span>
-        <span>Max</span>
-        <span>Min</span>
+        <img src="http://openweathermap.org/img/wn/10d@2x.png" />
+        <span>12 &deg; C</span>
+        <span>8 &deg; C</span>
       </div>
       <p className={styles.conditionName}>
         Rain
