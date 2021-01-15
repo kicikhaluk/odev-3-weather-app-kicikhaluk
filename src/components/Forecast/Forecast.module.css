@@ -1,0 +1,8 @@
+.forecast {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 10px;
+  background-color: #100261;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+}

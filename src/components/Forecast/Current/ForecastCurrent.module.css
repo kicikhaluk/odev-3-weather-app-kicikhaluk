@@ -1,21 +1,25 @@
 .wrapper {
-  width: 98%;
-  margin-left: 1%;
-  margin-right: 1%;
+  width: 100%;
+  padding: 1rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: #fff;
 }
 .wrapper img {
   display: block;
   max-width: 100%;
 }
 
-.overview {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.details {
+.flexContainerSb {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.degree {
+  font-size: 1rem;
+}
+
+.city {
+  font-size: 1.5rem;
 }
