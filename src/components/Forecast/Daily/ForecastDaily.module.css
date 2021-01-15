@@ -1,0 +1,21 @@
+.wrapper {
+  width: 98%;
+  margin-left: 1%;
+  margin-right: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.conditionStatus {
+  background-color: lightcoral;
+  display: flex;
+  align-items: center;
+}
+
+.conditionStatus span {
+  padding: 0 0.8rem;
+}
+
+.conditionName {
+  background-color: red;
+}

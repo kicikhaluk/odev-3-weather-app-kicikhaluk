@@ -1,0 +1,21 @@
+.wrapper {
+  width: 98%;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+.wrapper img {
+  display: block;
+  max-width: 100%;
+}
+
+.overview {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

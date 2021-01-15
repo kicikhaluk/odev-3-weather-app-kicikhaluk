@@ -16,9 +16,17 @@
         wind_speed,
         weather : [
           {
-            id
+            id 
+             - 2xx  thunderstorm
+             - 3xx  drizzle
+             - 5xx  rain
+             - 6xx  Snow
+             - 7xx atmosphere
+             - 800 clear
+             - 80x clouds
             main: "rain"
             description
+            icon
           }
         ] 
       },
