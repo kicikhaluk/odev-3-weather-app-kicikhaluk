@@ -4,7 +4,6 @@
     [ 
       {
         ...
-        dt
         sunrise
         temp: {
           ...
@@ -16,14 +15,7 @@
         wind_speed,
         weather : [
           {
-            id 
-             - 2xx  thunderstorm
-             - 3xx  drizzle
-             - 5xx  rain
-             - 6xx  Snow
-             - 7xx atmosphere
-             - 800 clear
-             - 80x clouds
+            ...
             main: "rain"
             description
             icon
@@ -49,46 +41,46 @@ const getForecast = async (lat = '36.200001', long = '36.166668') => {
   @desc get city name via coordinates;
 */
 
-const getCityName = async (lat, long) => {
-  try {
-    const APIURL = `https://us1.locationiq.com/v1/reverse.php?key=${process.env.REACT_APP_LOCATION_API}&lat=${lat}&lon=${long}&format=json`;
-    const res = await fetch(APIURL);
-    const { address } = res.json;
-    return address.county;
-  } catch (err) {
-    throw new Error("Invalid API Request for get city");
-  }
-};
+// const getCityName = async (lat, long) => {
+//   try {
+//     const APIURL = `https://us1.locationiq.com/v1/reverse.php?key=${process.env.REACT_APP_LOCATION_API}&lat=${lat}&lon=${long}&format=json`;
+//     const res = await fetch(APIURL);
+//     const { address } = await res.json();
+//     return address.county;
+//   } catch (err) {
+//     throw new Error("Invalid API Request for get city");
+//   }
+// };
 
-/*
- @desc get user location
-*/
+// /*
+//  @desc get user location
+// */
+// const getCoordinates = () => {
+//   const options = {
+//     enableHighAccuracy: true,
+//     timeout: 5000,
+//     maximumAge: 0,
+//   }
+//   const success = async (pos) => {
+//     const { latitude, longitude } = pos.coords;
+//     let city = await getCityName(latitude, longitude);
+//     console.log(city);
+//     return city;
+//   };
 
-const getCoordinates = () => {
-  const options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0,
-  }
-  const success = (pos) => {
-    const { latitude, longitude } = pos.coords;
-    getCityName(latitude, longitude);
-    return;
-  };
+//   const error = (err) => {
+//     if (err.message === 'User denied Geolocation') {
+//       return { message: "denied" };
+//     }
+//     throw new Error("Something went wrong.");
+//   };
 
-  const error = (err) => {
-    if (err.message === 'User denied Geolocation') {
-      return { message: "denied" };
-    }
-    throw new Error("Something went wrong.");
-  };
+//   navigator.geolocation.getCurrentPosition(success, error, options);
 
-  navigator.geolocation.getCurrentPosition(success, error, options);
-};
+// };
 
 const forecast = {
-  getForecast,
-  getCity: getCoordinates
+  getForecast
 };
 
 export default forecast;

@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { ForecastProvider } from './contexts/ForecastContext';
 import Forecast from './components/Forecast/Forecast';
+
 
 const App = () => {
 
   return (
-    <>
+    <ForecastProvider>
       <Forecast />
-    </>
+    </ForecastProvider>
   );
 }
 
