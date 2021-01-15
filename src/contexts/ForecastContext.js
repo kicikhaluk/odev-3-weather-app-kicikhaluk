@@ -6,15 +6,14 @@ const ForecastContext = createContext({});
 export const ForecastProvider = ({ children }) => {
 
   const [getForecast, setForecast] = useState([]);
+  const [getCity, setCity] = useState({ name: "Hatay", latitude: "36.200001", longitude: "36.166668" });
 
   useEffect(() => {
     forecastService
-      .getForecast()
+      .getForecast(getCity.latitude, getCity.longitude)
       .then(data => mapForecast(data))
       .catch(err => console.log(err));
-  }, []);
-
-  console.log(getForecast);
+  }, [getCity]);
 
   const getDay = (i) => {
     const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -39,7 +38,7 @@ export const ForecastProvider = ({ children }) => {
   };
 
   return (
-    <ForecastContext.Provider value={getForecast}>
+    <ForecastContext.Provider value={{ getForecast, getCity, setCity }}>
       {children}
     </ForecastContext.Provider>
   );
