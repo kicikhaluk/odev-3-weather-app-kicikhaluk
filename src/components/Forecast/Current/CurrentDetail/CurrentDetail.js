@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './CurrentDetail.module.css';
 import { Humidity, Sunrise, Wind } from '../../../icons';
-const CurrentDetail = ({ identifier }) => {
+const CurrentDetail = ({ identifier, desc }) => {
 
   let icon;
 
@@ -21,7 +21,7 @@ const CurrentDetail = ({ identifier }) => {
     <div className={styles.detail}>
       {icon}
       <div>
-        <small>89 &#37;</small>
+        <small>{desc}</small>
         <small>{identifier}</small>
       </div>
     </div>

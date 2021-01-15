@@ -19,9 +19,9 @@ const ForecastCurrent = () => {
         <p className={styles.city}>Hatay</p>
       </div>
       <div className={styles.flexContainerSb}>
-        <CurrentDetail identifier="wind" />
-        <CurrentDetail identifier="humidity" />
-        <CurrentDetail identifier="sunrise" />
+        <CurrentDetail identifier="wind" desc="15.6km" />
+        <CurrentDetail identifier="humidity" desc="%89" />
+        <CurrentDetail identifier="sunrise" desc="06.54" />
       </div>
     </div>
   );
