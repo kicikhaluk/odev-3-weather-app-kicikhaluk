@@ -15,18 +15,25 @@ export const ForecastProvider = ({ children }) => {
       .catch(err => console.log(err));
   }, [getCity]);
 
-  const getDay = (i) => {
-    const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-    return days[((new Date().getUTCDay() + i) % 7)];
+  const getDay = (unixTime) => {
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    return days[((new Date(unixTime * 1000).getUTCDay()))];
   };
 
+  const getSunrise = (unixTime) => {
+    const hour = new Date(unixTime * 1000).getHours();
+    const minutes = new Date(unixTime * 1000).getMinutes();
+    return `${hour}:${minutes}`;
+  };
+
+
   const mapForecast = (forecast) => {
-    const mappedForecast = forecast.map((daily, index) => {
+    const mappedForecast = forecast.map((daily) => {
       return {
-        day: getDay(index),
+        day: getDay(daily.dt),
         min: daily.temp.min,
         max: daily.temp.max,
-        sunrise: daily.sunrise,
+        sunrise: getSunrise(daily.sunrise),
         humidity: daily.humidity,
         windSpeed: daily.wind_speed,
         main: daily.weather[0].main,

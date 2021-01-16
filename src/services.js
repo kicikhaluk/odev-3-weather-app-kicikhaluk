@@ -4,6 +4,7 @@
     [ 
       {
         ...
+        dt
         sunrise
         temp: {
           ...
@@ -38,49 +39,23 @@ const getForecast = async (lat = '36.200001', long = '36.166668') => {
 };
 
 /* 
-  @desc get city name via coordinates;
+  @desc get city name
 */
 
-// const getCityName = async (lat, long) => {
-//   try {
-//     const APIURL = `https://us1.locationiq.com/v1/reverse.php?key=${process.env.REACT_APP_LOCATION_API}&lat=${lat}&lon=${long}&format=json`;
-//     const res = await fetch(APIURL);
-//     const { address } = await res.json();
-//     return address.county;
-//   } catch (err) {
-//     throw new Error("Invalid API Request for get city");
-//   }
-// };
-
-// /*
-//  @desc get user location
-// */
-// const getCoordinates = () => {
-//   const options = {
-//     enableHighAccuracy: true,
-//     timeout: 5000,
-//     maximumAge: 0,
-//   }
-//   const success = async (pos) => {
-//     const { latitude, longitude } = pos.coords;
-//     let city = await getCityName(latitude, longitude);
-//     console.log(city);
-//     return city;
-//   };
-
-//   const error = (err) => {
-//     if (err.message === 'User denied Geolocation') {
-//       return { message: "denied" };
-//     }
-//     throw new Error("Something went wrong.");
-//   };
-
-//   navigator.geolocation.getCurrentPosition(success, error, options);
-
-// };
+const getCityName = async (lat, long) => {
+  try {
+    const APIURL = `https://us1.locationiq.com/v1/reverse.php?key=${process.env.REACT_APP_LOCATION_API}&lat=${lat}&lon=${long}&format=json`;
+    const res = await fetch(APIURL);
+    const { address } = await res.json();
+    return address.county;
+  } catch (err) {
+    throw new Error("Invalid API Request for get city");
+  }
+};
 
 const forecast = {
-  getForecast
+  getForecast,
+  getCityName
 };
 
 export default forecast;
