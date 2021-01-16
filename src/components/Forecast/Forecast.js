@@ -16,12 +16,7 @@ const Forecast = () => {
     <div className={styles.forecast}>
       <DataList />
       <ForecastCurrent current={getForecast[0]} city={getCity.name} />
-      {getForecast.map((daily, index) => {
-        if (index !== 0) {
-          return <ForecastDaily key={daily.day} daily={daily} />
-        }
-        return;
-      })}
+      {getForecast.map((daily, index) => (index !== 0 && <ForecastDaily key={daily.day} daily={daily} />))}
     </div>
   );
 };

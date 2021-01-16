@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState, useCallback } from 'react';
 import forecastService from '../services';
 
 const ForecastContext = createContext({});
@@ -7,13 +7,6 @@ export const ForecastProvider = ({ children }) => {
 
   const [getForecast, setForecast] = useState([]);
   const [getCity, setCity] = useState({ name: "Hatay", latitude: "36.200001", longitude: "36.166668" });
-
-  useEffect(() => {
-    forecastService
-      .getForecast(getCity.latitude, getCity.longitude)
-      .then(data => mapForecast(data))
-      .catch(err => console.log(err));
-  }, [getCity]);
 
   const getDay = (unixTime) => {
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -27,7 +20,7 @@ export const ForecastProvider = ({ children }) => {
   };
 
 
-  const mapForecast = (forecast) => {
+  const mapForecast = useCallback((forecast) => {
     const mappedForecast = forecast.map((daily) => {
       return {
         day: getDay(daily.dt),
@@ -42,8 +35,13 @@ export const ForecastProvider = ({ children }) => {
       };
     });
     setForecast(mappedForecast);
-  };
-
+  }, []);
+  useEffect(() => {
+    forecastService
+      .getForecast(getCity.latitude, getCity.longitude)
+      .then(data => mapForecast(data))
+      .catch(err => console.log(err));
+  }, [getCity, mapForecast]);
   return (
     <ForecastContext.Provider value={{ getForecast, getCity, setCity }}>
       {children}

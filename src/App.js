@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useCallback } from 'react';
 import ForecastContext from './contexts/ForecastContext';
 import Forecast from './components/Forecast/Forecast';
 import forecastServices from './services';
@@ -6,12 +6,7 @@ import forecastServices from './services';
 const App = () => {
 
   const { setCity } = useContext(ForecastContext);
-
-  useEffect(() => {
-    getCoordinates();
-  }, []);
-
-  const getCoordinates = () => {
+  const getCoordinates = useCallback(() => {
     const options = {
       enableHighAccuracy: true,
       timeout: 5000,
@@ -32,7 +27,12 @@ const App = () => {
 
     navigator.geolocation.getCurrentPosition(success, error, options);
 
-  };
+  }, [setCity]);
+
+  useEffect(() => {
+    getCoordinates();
+  }, [getCoordinates]);
+
 
   return (
     <>
