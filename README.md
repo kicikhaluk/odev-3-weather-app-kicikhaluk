@@ -1,6 +1,6 @@
 # Weather App
 
-Netlify links :  https://focused-shirley-37d206.netlify.app
+Netlify links :  https://dazzling-sammet-dba0ce.netlify.app/
 
 Used API's: 
 Forecast: https://openweathermap.org/api/one-call-api
